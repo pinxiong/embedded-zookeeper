@@ -29,5 +29,8 @@ RUN apt-get update && \
 VOLUME /usr/local/zookeeper
 
 WORKDIR /usr/local/zookeeper/
+
+COPY init.sh zkCmd.sh ${WORKDIR}
+
 #ENTRYPOINT exec build zookeeper instances
 ENTRYPOINT ["bash", "-x", "./init.sh"]
