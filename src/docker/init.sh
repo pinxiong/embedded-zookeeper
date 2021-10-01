@@ -51,9 +51,6 @@ sed -i "s#^dataDir=.*#dataDir=$LOG_DIR/2182#g" $ZOOKEEPER_DIR_2182/apache-zookee
 sed -i "s#^clientPort=.*#clientPort=2182#g" $ZOOKEEPER_DIR_2182/apache-zookeeper-3.6.0-2182/conf/zoo.cfg
 echo "admin.serverPort=8082" >> $ZOOKEEPER_DIR_2182/apache-zookeeper-3.6.0-2182/conf/zoo.cfg
 
-# start zookeeper
-./zkCmd.sh start
-
 # hold the process
 while true
 do
