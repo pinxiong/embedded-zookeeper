@@ -13,8 +13,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-ARG JAVA_VER=8
-FROM openjdk:$JAVA_VER
+FROM adoptopenjdk/openjdk8
 
 ARG DEBIAN_MIRROR
 RUN if [ -n "$DEBIAN_MIRROR" ]; then \
@@ -24,13 +23,18 @@ RUN if [ -n "$DEBIAN_MIRROR" ]; then \
 
 RUN apt-get update && \
   apt-get install -y telnet && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get install -y wget && \
+  rm -rf /var/lib/apt/lists/* && \
+  mkdir -p /usr/local/zookeeper && \
+  wget -O /usr/local/zookeeper/apache-zookeeper.tar.gz -c -N --show-progress  https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz
 
 VOLUME /usr/local/zookeeper
 
 WORKDIR /usr/local/zookeeper/
 
 COPY init.sh zkCmd.sh ${WORKDIR}
+
+EXPOSE 2181 2182
 
 #ENTRYPOINT exec build zookeeper instances
 ENTRYPOINT ["bash", "-x", "./init.sh"]

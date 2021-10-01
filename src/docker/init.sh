@@ -17,12 +17,7 @@
 # limitations under the License.
 
 DIR=/usr/local/zookeeper/
-if [ ! -d $DIR ];then
-  mkdir -p $DIR
-fi
-
 cd $DIR
-
 LOG_DIR=/usr/local/zookeeper/logs
 if [ ! -d $LOG_DIR ];then
   mkdir -p $LOG_DIR
@@ -40,9 +35,6 @@ if [ ! -d $ZOOKEEPER_DIR_2182 ];then
   mkdir -p $ZOOKEEPER_DIR_2182
 fi
 
-# download zookeeper
-wget -O apache-zookeeper.tar.gz -c -N --show-progress  https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz
-
 # install with 2181
 tar -zxvf apache-zookeeper.tar.gz -C $ZOOKEEPER_DIR_2181
 mv $ZOOKEEPER_DIR_2181/apache-zookeeper-3.6.0-bin $ZOOKEEPER_DIR_2181/apache-zookeeper-3.6.0-2181
@@ -57,3 +49,18 @@ cp $ZOOKEEPER_DIR_2182/apache-zookeeper-3.6.0-2182/conf/zoo_sample.cfg $ZOOKEEPE
 sed -i "s#^dataDir=.*#dataDir=$LOG_DIR/2182#g" $ZOOKEEPER_DIR_2182/apache-zookeeper-3.6.0-2182/conf/zoo.cfg
 sed -i "s#^clientPort=.*#clientPort=2182#g" $ZOOKEEPER_DIR_2182/apache-zookeeper-3.6.0-2182/conf/zoo.cfg
 echo "admin.serverPort=8082" >> $ZOOKEEPER_DIR_2182/apache-zookeeper-3.6.0-2182/conf/zoo.cfg
+
+# define
+ZOOKEEPER_SERVER_2181=/usr/local/zookeeper/2181/apache-zookeeper-3.6.0-2181/bin/zkServer.sh
+ZOOKEEPER_SERVER_2182=/usr/local/zookeeper/2182/apache-zookeeper-3.6.0-2182/bin/zkServer.sh
+
+# start zookeeper
+$ZOOKEEPER_SERVER_2181 start
+$ZOOKEEPER_SERVER_2182 start
+
+# hold the process
+STARTED=1
+while [ $STARTED == 1 ]
+do
+  sleep 100
+done

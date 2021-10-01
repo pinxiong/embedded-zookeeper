@@ -26,11 +26,6 @@ ZOOKEEPER_CLIENT_2182=$ZOOKEEPER_HOME_2182/bin/zkCli.sh
 case $1 in 
 start)
     echo "start zookeeper"
-    pwd
-    echo "2181 directory info"
-    ls 2181/
-    echo "2181 directory info"
-    ls 2182/
     $ZOOKEEPER_SERVER_2181 start
     $ZOOKEEPER_SERVER_2182 start
     ;;
@@ -74,7 +69,7 @@ reset)
     $ZOOKEEPER_CLIENT_2182 -timeout 5000  -server 127.0.0.1:2182 deleteall /dubbo quit
     ;;
 *)
-    echo "./mock-zookeeper.sh start|stop|status|reset"
+    echo "./zookeeper.sh start|restart|stop|status|reset"
     exit 1
     ;;
 esac

@@ -16,7 +16,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo "Building zookeeper image..."
-cd $DIR
-docker build -d dubbo/zookeeper:8 .
+CONTAINER_ID=`docker ps | grep "dubbo/zookeeper:8" |awk '{print $1}'`
+if [ "$CONTAINER_ID" == "" ]; then
+  echo "Please run build-zk-image.sh first"
+  return 1
+fi
+
+ZK_CMD=/usr/local/zookeeper/zkCmd.sh
+
+case $1 in 
+start)
+    docker exec -it $CONTAINER_ID $ZK_CMD start
+    ;;
+restart)
+    docker exec -it $CONTAINER_ID $ZK_CMD restart
+    ;;
+stop)
+    docker exec -it $CONTAINER_ID $ZK_CMD stop
+    docker container rm --force $CONTAINER_ID
+    ;;
+status)
+    docker exec -it $CONTAINER_ID $ZK_CMD status
+    ;;
+reset)
+    docker exec -it $CONTAINER_ID $ZK_CMD reset
+    ;;
+*)
+    echo "./zookeeper.sh start|restart|stop|status|reset"
+    exit 1
+    ;;
+esac
+exit 0
