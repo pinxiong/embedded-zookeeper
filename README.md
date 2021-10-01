@@ -13,14 +13,30 @@ cd src/docker
 ./build-zk-image.sh
 ```
 
-+ start container
-
-```she
-docker run --privileged -it --name="dubbo-zookeeper" dubbo/zookeeper:8  -p 2181:2181 2182:2182 /bin/bash
-```
-
-+ start zookeeper
++ start zookeeper instances
 
 ```shell
-docker exec -it dubbo-zookeeper /bin/sh /usr/local/zookeeper/zkCmd.sh start
+cd src
+./zookeeper.sh start
+```
+
++ stop zookeeper instances
+
+```shell
+cd src
+./zookeeper.sh stop
+```
+
++ reset zookeeper instances
+
+```shell
+cd src
+./zookeeper.sh reset
+```
+
++ get info of zookeeper instances
+
+```shell
+cd src
+./zookeeper.sh status
 ```

@@ -69,7 +69,7 @@ reset)
     $ZOOKEEPER_CLIENT_2182 -timeout 5000  -server 127.0.0.1:2182 deleteall /dubbo quit
     ;;
 *)
-    echo "./zookeeper.sh start|restart|stop|status|reset"
+    echo "./zookeeper.sh start|stop|status|reset"
     exit 1
     ;;
 esac
