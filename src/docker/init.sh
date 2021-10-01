@@ -18,6 +18,7 @@
 
 DIR=/usr/local/zookeeper/
 cd $DIR
+echo "DIR = $DIR"
 LOG_DIR=/usr/local/zookeeper/logs
 if [ ! -d $LOG_DIR ];then
   mkdir -p $LOG_DIR
@@ -50,13 +51,8 @@ sed -i "s#^dataDir=.*#dataDir=$LOG_DIR/2182#g" $ZOOKEEPER_DIR_2182/apache-zookee
 sed -i "s#^clientPort=.*#clientPort=2182#g" $ZOOKEEPER_DIR_2182/apache-zookeeper-3.6.0-2182/conf/zoo.cfg
 echo "admin.serverPort=8082" >> $ZOOKEEPER_DIR_2182/apache-zookeeper-3.6.0-2182/conf/zoo.cfg
 
-# define
-ZOOKEEPER_SERVER_2181=/usr/local/zookeeper/2181/apache-zookeeper-3.6.0-2181/bin/zkServer.sh
-ZOOKEEPER_SERVER_2182=/usr/local/zookeeper/2182/apache-zookeeper-3.6.0-2182/bin/zkServer.sh
-
 # start zookeeper
-$ZOOKEEPER_SERVER_2181 start
-$ZOOKEEPER_SERVER_2182 start
+./zkCmd.sh start
 
 # hold the process
 while true

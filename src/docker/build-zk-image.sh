@@ -19,4 +19,4 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "Building zookeeper image..."
 cd $DIR
-docker build -d dubbo/zookeeper:8 .
+docker build -t dubbo/zookeeper:8 .

@@ -18,8 +18,13 @@
 
 CONTAINER_ID=`docker ps | grep "dubbo/zookeeper:8" |awk '{print $1}'`
 if [ "$CONTAINER_ID" == "" ]; then
-  echo "Please run build-zk-image.sh first"
-  return 1
+    echo "Start dubbo/zookeeper:8 image..."
+    docker run --name="dubbo-zookeeper" -d dubbo/zookeeper:8  -p 2181:2181 2182:2182
+    CONTAINER_ID=`docker ps | grep "dubbo/zookeeper:8" |awk '{print $1}'`
+    if [ "$CONTAINER_ID" == "" ]; then
+        echo "ERROR: Failed to start dubbo/zookeeper:8 image, maybe you need to run build-zk-image.sh first"
+    return 1
+  fi
 fi
 
 ZK_CMD=/usr/local/zookeeper/zkCmd.sh
