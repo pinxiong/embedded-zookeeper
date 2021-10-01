@@ -16,15 +16,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CONTAINER_ID=`docker ps | grep "dubbo/zookeeper:8" |awk '{print $1}'`
+# seart docker container before
+CONTAINER_ID=`docker container list -a | grep "dubbo-zookeeper" |awk '{print $1}'`
 if [ "$CONTAINER_ID" == "" ]; then
     echo "Start dubbo/zookeeper:8 image..."
     docker run --name="dubbo-zookeeper" -d dubbo/zookeeper:8  -p 2181:2181 2182:2182
     CONTAINER_ID=`docker ps | grep "dubbo/zookeeper:8" |awk '{print $1}'`
     if [ "$CONTAINER_ID" == "" ]; then
         echo "ERROR: Failed to start dubbo/zookeeper:8 image, maybe you need to run build-zk-image.sh first"
-    return 1
-  fi
+        return 1
+    fi
+else
+    STARTED_CONTAINER_ID=`docker ps | grep "dubbo/zookeeper:8" |awk '{print $1}'`
+    if [ "$STARTED_CONTAINER_ID" == "" ]; then
+        docker start $CONTAINER_ID
+    fi
 fi
 
 ZK_CMD=/usr/local/zookeeper/zkCmd.sh
