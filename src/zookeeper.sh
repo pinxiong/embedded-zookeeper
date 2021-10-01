@@ -33,7 +33,7 @@ restart)
     ;;
 stop)
     docker exec -it $CONTAINER_ID $ZK_CMD stop
-    docker container rm --force $CONTAINER_ID
+    docker stop $CONTAINER_ID
     ;;
 status)
     docker exec -it $CONTAINER_ID $ZK_CMD status

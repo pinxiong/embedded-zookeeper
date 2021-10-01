@@ -59,8 +59,7 @@ $ZOOKEEPER_SERVER_2181 start
 $ZOOKEEPER_SERVER_2182 start
 
 # hold the process
-STARTED=1
-while [ $STARTED == 1 ]
+while true
 do
-  sleep 100
+  sleep 500
 done
