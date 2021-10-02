@@ -6,6 +6,7 @@ jobs:
   nacos-lifecycle-ubuntu:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v1
       - name: "Build zookeeper image"
         run: |
           cd src/docker && bash ./build-zk-image.sh
@@ -23,6 +24,7 @@ jobs:
       run:
         shell: bash
     steps:
+      - uses: actions/checkout@v1
       - name: "Build zookeeper image"
         run: |
           cd src/docker && bash ./build-zk-image.sh
