@@ -28,8 +28,8 @@ FROM openjdk:8
 #  mkdir -p /usr/local/zookeeper && \
 #  wget -O /usr/local/zookeeper/apache-zookeeper.tar.gz -c -N --show-progress  https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz
 
-RUN mkdir -p /usr/local/zookeeper && \
-    curl -L -# https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz -o /usr/local/zookeeper/apache-zookeeper.tar.gz
+RUN mkdir -p /usr/local/zookeeper
+RUN curl -L -# https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz -o /usr/local/zookeeper/apache-zookeeper.tar.gz
 
 VOLUME /usr/local/zookeeper
 
