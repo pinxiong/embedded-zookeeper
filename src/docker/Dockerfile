@@ -32,7 +32,7 @@ VOLUME /usr/local/zookeeper
 
 WORKDIR /usr/local/zookeeper/
 
-COPY init.sh zkCmd.sh ${WORKDIR}
+COPY ./init.sh ./zkCmd.sh ${WORKDIR}
 
 EXPOSE 2181 2182
 
