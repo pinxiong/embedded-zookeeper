@@ -38,20 +38,20 @@ ZK_CMD=/usr/local/zookeeper/zkCmd.sh
 
 case $1 in 
 start)
-    docker-compose exec dubbo-zookeeper /bin/bash $ZK_CMD start
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD start
     ;;
 restart)
-    docker-compose exec dubbo-zookeeper /bin/bash $ZK_CMD restart
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD restart
     ;;
 stop)
-    docker-compose exec dubbo-zookeeper /bin/bash $ZK_CMD stop
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD stop
     docker-compose down -v
     ;;
 status)
-    docker-compose exec dubbo-zookeeper /bin/bash $ZK_CMD status
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD status
     ;;
 reset)
-    docker-compose exec dubbo-zookeeper /bin/bash $ZK_CMD reset
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD reset
     ;;
 *)
     echo "./zookeeper.sh start|restart|stop|status|reset"
