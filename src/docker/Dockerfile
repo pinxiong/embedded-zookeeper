@@ -21,12 +21,15 @@ FROM openjdk:8
 #  sed -i "s@http://security.debian.org@${DEBIAN_MIRROR}@g" /etc/apt/sources.list && \
 #  cat /etc/apt/sources.list ; fi
 
-RUN apt-get update && \
-  apt-get install -y telnet && \
-  apt-get install -y wget && \
-  rm -rf /var/lib/apt/lists/* && \
-  mkdir -p /usr/local/zookeeper && \
-  wget -O /usr/local/zookeeper/apache-zookeeper.tar.gz -c -N --show-progress  https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz
+#RUN apt-get update && \
+#  apt-get install -y telnet && \
+#  apt-get install -y wget && \
+#  rm -rf /var/lib/apt/lists/* && \
+#  mkdir -p /usr/local/zookeeper && \
+#  wget -O /usr/local/zookeeper/apache-zookeeper.tar.gz -c -N --show-progress  https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz
+
+RUN mkdir -p /usr/local/zookeeper && \
+    curl -L -# https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz -o nacos/nacos-server.tar.gz
 
 VOLUME /usr/local/zookeeper
 
