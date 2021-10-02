@@ -17,8 +17,6 @@ FROM openjdk:8
 
 RUN mkdir -p /usr/local/zookeeper
 
-VOLUME /usr/local/zookeeper
-
 WORKDIR /usr/local/zookeeper/
 
 COPY ./init.sh ./zkCmd.sh /usr/local/zookeeper/
