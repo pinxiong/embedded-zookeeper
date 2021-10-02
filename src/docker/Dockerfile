@@ -13,7 +13,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-FROM adoptopenjdk/openjdk8
+FROM openjdk:8
 
 ARG DEBIAN_MIRROR
 RUN if [ -n "$DEBIAN_MIRROR" ]; then \
