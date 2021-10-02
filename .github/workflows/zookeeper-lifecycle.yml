@@ -3,7 +3,7 @@ name: Zookeeper Lifecycle
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  nacos-lifecycle-ubuntu:
+  zookeeper-lifecycle-ubuntu:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
@@ -18,11 +18,8 @@ jobs:
           cd src && bash ./zookeeper.sh stop
           
           
-  nacos-lifecycle-windows:
+  zookeeper-lifecycle-windows:
     runs-on: windows-2019
-    defaults:
-      run:
-        shell: bash
     steps:
       - uses: actions/checkout@v1
       - name: "Build zookeeper image"

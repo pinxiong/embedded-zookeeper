@@ -15,11 +15,11 @@
 
 FROM openjdk:8
 
-ARG DEBIAN_MIRROR
-RUN if [ -n "$DEBIAN_MIRROR" ]; then \
-  sed -i "s@http://deb.debian.org@${DEBIAN_MIRROR}@g" /etc/apt/sources.list && \
-  sed -i "s@http://security.debian.org@${DEBIAN_MIRROR}@g" /etc/apt/sources.list && \
-  cat /etc/apt/sources.list ; fi
+#ARG DEBIAN_MIRROR
+#RUN if [ -n "$DEBIAN_MIRROR" ]; then \
+#  sed -i "s@http://deb.debian.org@${DEBIAN_MIRROR}@g" /etc/apt/sources.list && \
+#  sed -i "s@http://security.debian.org@${DEBIAN_MIRROR}@g" /etc/apt/sources.list && \
+#  cat /etc/apt/sources.list ; fi
 
 RUN apt-get update && \
   apt-get install -y telnet && \
