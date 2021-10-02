@@ -15,21 +15,7 @@
 
 FROM openjdk:8
 
-#ARG DEBIAN_MIRROR
-#RUN if [ -n "$DEBIAN_MIRROR" ]; then \
-#  sed -i "s@http://deb.debian.org@${DEBIAN_MIRROR}@g" /etc/apt/sources.list && \
-#  sed -i "s@http://security.debian.org@${DEBIAN_MIRROR}@g" /etc/apt/sources.list && \
-#  cat /etc/apt/sources.list ; fi
-
-#RUN apt-get update && \
-#  apt-get install -y telnet && \
-#  apt-get install -y wget && \
-#  rm -rf /var/lib/apt/lists/* && \
-#  mkdir -p /usr/local/zookeeper && \
-#  wget -O /usr/local/zookeeper/apache-zookeeper.tar.gz -c -N --show-progress  https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz
-
 RUN mkdir -p /usr/local/zookeeper
-RUN curl -L -# https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz -o /usr/local/zookeeper/apache-zookeeper.tar.gz
 
 VOLUME /usr/local/zookeeper
 

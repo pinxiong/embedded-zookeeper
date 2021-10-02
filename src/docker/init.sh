@@ -36,6 +36,11 @@ if [ ! -d $ZOOKEEPER_DIR_2182 ];then
   mkdir -p $ZOOKEEPER_DIR_2182
 fi
 
+# update
+apt-get update
+apt-get install -y wget
+wget -O /usr/local/zookeeper/apache-zookeeper.tar.gz -c -N --show-progress  https://archive.apache.org/dist/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz
+
 # install with 2181
 tar -zxvf apache-zookeeper.tar.gz -C $ZOOKEEPER_DIR_2181
 mv $ZOOKEEPER_DIR_2181/apache-zookeeper-3.6.0-bin $ZOOKEEPER_DIR_2181/apache-zookeeper-3.6.0-2181
