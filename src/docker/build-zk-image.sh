@@ -34,7 +34,7 @@ cd $DIR
 
 if $IS_WINDOWS_OS
 then
-    docker build -f Dockerfile-windows -t dubbo/zookeeper:8 .
+    docker build -f Dockerfile-windows -v /C/Users/systemDir:/usr/local/zookeeper -t dubbo/zookeeper:8 .
 else
     docker build -f Dockerfile-unix -t dubbo/zookeeper:8 .
 fi
