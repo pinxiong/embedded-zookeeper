@@ -21,7 +21,7 @@ VOLUME c:/Users/zookeeper
 
 WORKDIR c:/Users/zookeeper/
 
-COPY ./init-windows.sh ./zkCmd.sh /usr/local/zookeeper/
+COPY ./init-windows.sh ./zkCmd.sh c:/Users/zookeeper/
 
 EXPOSE 2181 2182
 
