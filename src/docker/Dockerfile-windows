@@ -19,7 +19,7 @@ RUN mkdir -p /usr/local/zookeeper
 
 VOLUME c:/Users/zookeeper
 
-WORKDIR /usr/local/zookeeper/
+WORKDIR c:/Users/zookeeper/
 
 COPY ./init-windows.sh ./zkCmd.sh /usr/local/zookeeper/
 

@@ -24,9 +24,6 @@ services:
     dubbo-zookeeper:
         image: dubbo/zookeeper:8
         hostname: dubbo-zookeeper
-        volumes:
-          - /usr/local/zookeeper/
-          - /usr/local/zookeeper/logs
         restart: always
         ports:
           - "2181:2181"
