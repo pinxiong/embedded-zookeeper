@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-DIR=/usr/local/zookeeper
+DIR=c:/Users/zookeeper
 cd $DIR
 echo "DIR = $DIR"
 LOG_DIR=$DIR/logs
