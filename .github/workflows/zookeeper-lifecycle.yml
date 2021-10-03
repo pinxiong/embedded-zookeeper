@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: "Build zookeeper image"
         run: |
-          cd src/docker && bash ./build-zk-image.sh
+          cd src/docker && bash ./build-zk-image.sh && docker images
       - name: "Start zookeeper instances"
         run : |
           cd src && bash ./zookeeper.sh start
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: "Build zookeeper image"
         run: |
-          cd src/docker && bash ./build-zk-image.sh
+          cd src/docker && bash ./build-zk-image.sh && docker images
       - name: "Start zookeeper instances"
         run : |
           cd src && bash ./zookeeper.sh start
