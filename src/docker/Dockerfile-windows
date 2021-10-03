@@ -17,7 +17,7 @@ FROM openjdk:8
 
 RUN mkdir -p /usr/local/zookeeper
 
-VOLUME /c/Users/systemDir
+VOLUME c:/Users/zookeeper
 
 WORKDIR /usr/local/zookeeper/
 
