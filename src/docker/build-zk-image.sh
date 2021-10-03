@@ -16,7 +16,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+IS_WINDOWS_OS=true
+# detect if the OS is windows
+{
+    if [[ `uname` == 'Linux' ]] || [[ `uname` == 'Darwin' ]]; then
+		IS_WINDOWS_OS=false
+	fi
+} || {
+	echo "This OS is windows."
+	IS_WINDOWS_OS=true
+}
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "Building zookeeper image..."
 cd $DIR
-docker build -t dubbo/zookeeper:8 .
+
+if $IS_WINDOWS_OS
+then
+    docker build -f Dockerfile-windows -t dubbo/zookeeper:8 .
+else
+    docker build -f Dockerfile-unix -t dubbo/zookeeper:8 .
+fi

@@ -28,7 +28,7 @@ start)
     echo "start zookeeper"
     if [ ! -f "$ZOOKEEPER_SERVER_2181" ]; then
         echo "waiting for installing zookeeper instances..."
-        sleep 25s
+        sleep 5s
     fi
     $ZOOKEEPER_SERVER_2181 start
     if [ ! -f "$ZOOKEEPER_SERVER_2182" ]; then
