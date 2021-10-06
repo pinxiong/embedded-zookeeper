@@ -27,11 +27,9 @@ services:
         restart: always
         ports:
           - "2181:2181"
-          - "9000:8080"
     dubbo-zookeeper-2182:
         image: zookeeper:3.6.3
         hostname: dubbo-zookeeper-2182
         restart: always
         ports:
           - "2182:2181"
-          - "9001:8080"
