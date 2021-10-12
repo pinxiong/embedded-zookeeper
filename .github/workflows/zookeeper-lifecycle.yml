@@ -25,6 +25,8 @@ jobs:
       - name: "Start zookeeper instances"
         run : |
           cd src && bash ./zkCmd.sh start
+        shell: bash
       - name: "Stop zookeeper instances"
         run : |
           cd src && bash ./zkCmd.sh stop
+        shell: bash
