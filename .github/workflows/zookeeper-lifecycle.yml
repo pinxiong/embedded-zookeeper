@@ -22,8 +22,6 @@ jobs:
       - uses: Vampire/setup-wsl@v1
         with:
             distribution: Ubuntu-18.04
-            use-cache: 'false'
-            update: 'true'
       - name: "Start zookeeper instances"
         run : |
           cd src && bash ./zkCmd.sh start
