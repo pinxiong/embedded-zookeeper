@@ -22,13 +22,13 @@ networks:
 
 services:
     dubbo-zookeeper-2181:
-        image: tmather99/zookeeper-windowsservercore-ltsc2019
+        image: tmather99/zookeeper
         hostname: dubbo-zookeeper-2181
         restart: always
         ports:
           - "2181:2181"
     dubbo-zookeeper-2182:
-        image: tmather99/zookeeper-windowsservercore-ltsc2019
+        image: tmather99/zookeeper
         hostname: dubbo-zookeeper-2182
         restart: always
         ports:
