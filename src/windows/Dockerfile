@@ -1,4 +1,4 @@
-FROM openjdk:17-nanoserver
+FROM openjdk:17-windowsservercore-ltsc2016
 
 ARG DISTRO_NAME=zookeeper-3.6.3
 
