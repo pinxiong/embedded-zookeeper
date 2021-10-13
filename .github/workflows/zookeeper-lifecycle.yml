@@ -22,8 +22,12 @@ jobs:
       - name: "Start zookeeper instances"
         run : |
           cd src/windows && bash ./zkCmd.sh start
+          netstat -ano | findstr 2181
+          netstat -ano | findstr 2182
         shell: bash
       - name: "Stop zookeeper instances"
         run : |
           cd src/windows && bash ./zkCmd.sh stop
+          netstat -ano | findstr 2181
+          netstat -ano | findstr 2182
         shell: bash
