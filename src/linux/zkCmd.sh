@@ -41,15 +41,15 @@ stop)
     ;;
 status)
     echo "zookeeper info with 2181"
-    docker-compose exec -T dubbo-zookeeper-2181 /bin/bash $SERVER status
+    docker-compose exec dubbo-zookeeper-2181 /bin/bash $SERVER status
     echo "zookeeper info with 2181"
-    docker-compose exec -T dubbo-zookeeper-2182 /bin/bash $SERVER status
+    docker-compose exec dubbo-zookeeper-2182 /bin/bash $SERVER status
     ;;
 reset)
     echo "reset zookeeper with 2181"
-    docker-compose exec -T dubbo-zookeeper-2181 /bin/bash $CLIENT -timeout 5000  -server 127.0.0.1:2181 deleteall /dubbo quit
+    docker-compose exec dubbo-zookeeper-2181 /bin/bash $CLIENT -timeout 5000  -server 127.0.0.1:2181 deleteall /dubbo quit
     echo "reset zookeeper with 2182"
-    docker-compose exec -T dubbo-zookeeper-2182 /bin/bash $CLIENT -timeout 5000  -server 127.0.0.1:2181 deleteall /dubbo quit
+    docker-compose exec dubbo-zookeeper-2182 /bin/bash $CLIENT -timeout 5000  -server 127.0.0.1:2181 deleteall /dubbo quit
     ;;
 *)
     echo "./zkCmd.sh start|stop|status|reset"

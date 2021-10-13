@@ -10,9 +10,6 @@ jobs:
       - name: "Start zookeeper instances"
         run : |
           cd src/linux && bash ./zkCmd.sh start
-      - name: "Reset zookeeper instances"
-        run : |
-          cd src/linux && bash ./zkCmd.sh reset
       - name: "Stop zookeeper instances"
         run : |
           cd src/linux && bash ./zkCmd.sh stop
@@ -25,10 +22,6 @@ jobs:
       - name: "Start zookeeper instances"
         run : |
           cd src/windows && bash ./zkCmd.sh start
-        shell: bash
-      - name: "Reset zookeeper instances"
-        run : |
-          cd src/windows && bash ./zkCmd.sh reset
         shell: bash
       - name: "Stop zookeeper instances"
         run : |
