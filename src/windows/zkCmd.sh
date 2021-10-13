@@ -32,7 +32,7 @@ start)
         echo "Clean dubbo-zookeeper instances ... "
         docker-compose down -v
         echo "Start zookeeper instances ..."
-        docker-compose -f docker-compose.yml up -d
+        docker-compose -f docker-compose.yml up -d --isolation=hyperv
     fi
     ;;
 stop)
