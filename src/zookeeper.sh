@@ -17,19 +17,20 @@
 # limitations under the License.
 
 # seart docker container before
-CONTAINER_ID=`docker container list -a | grep "dubbo-zookeeper" |awk '{print $1}'`
+CONTAINER_ID=`docker-compose ps -a | grep "dubbo-zookeeper" |awk '{print $1}'`
 if [ "$CONTAINER_ID" == "" ]; then
     echo "Start dubbo/zookeeper:8 image..."
-    docker run --name="dubbo-zookeeper" -d -p 2181:2181 -p 2182:2182 dubbo/zookeeper:8
-    CONTAINER_ID=`docker ps | grep "dubbo/zookeeper:8" |awk '{print $1}'`
+    docker-compose -f docker-compose.yml up -d
+    #docker run --name="dubbo-zookeeper" -d -p 2181:2181 -p 2182:2182 dubbo/zookeeper:8
+    CONTAINER_ID=`docker-compose ps | grep "dubbo-zookeeper" |awk '{print $1}'`
     if [ "$CONTAINER_ID" == "" ]; then
         echo "ERROR: Failed to start dubbo/zookeeper:8 image, maybe you need to run build-zk-image.sh first"
         return 1
     fi
 else
-    STARTED_CONTAINER_ID=`docker ps | grep "dubbo/zookeeper:8" |awk '{print $1}'`
-    if [ "$STARTED_CONTAINER_ID" == "" ]; then
-        docker start $CONTAINER_ID
+    STATUS=`docker-compose ps | grep "dubbo-zookeeper" |awk '{print $5}'`
+    if [ "$STATUS" == "Exit" ]; then
+        docker-compose restart dubbo-zookeeper
     fi
 fi
 
@@ -37,20 +38,20 @@ ZK_CMD=/usr/local/zookeeper/zkCmd.sh
 
 case $1 in 
 start)
-    docker exec -it $CONTAINER_ID $ZK_CMD start
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD start
     ;;
 restart)
-    docker exec -it $CONTAINER_ID $ZK_CMD restart
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD restart
     ;;
 stop)
-    docker exec -it $CONTAINER_ID $ZK_CMD stop
-    docker stop $CONTAINER_ID
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD stop
+    docker-compose down -v
     ;;
 status)
-    docker exec -it $CONTAINER_ID $ZK_CMD status
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD status
     ;;
 reset)
-    docker exec -it $CONTAINER_ID $ZK_CMD reset
+    docker-compose exec -T dubbo-zookeeper /bin/bash $ZK_CMD reset
     ;;
 *)
     echo "./zookeeper.sh start|restart|stop|status|reset"

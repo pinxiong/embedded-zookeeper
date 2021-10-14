@@ -1,0 +1,33 @@
+name: Zookeeper Lifecycle
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  zookeeper-lifecycle-ubuntu:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: "Build zookeeper image"
+        run: |
+          cd src/docker && bash ./build-zk-image.sh && docker images
+      - name: "Start zookeeper instances"
+        run : |
+          cd src && bash ./zookeeper.sh start
+      - name: "Stop zookeeper instances"
+        run : |
+          cd src && bash ./zookeeper.sh stop
+          
+          
+  zookeeper-lifecycle-windows:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v1
+      - name: "Build zookeeper image"
+        run: |
+          cd src/docker && bash ./build-zk-image.sh && docker images
+      - name: "Start zookeeper instances"
+        run : |
+          cd src && bash ./zookeeper.sh start
+      - name: "Stop zookeeper instances"
+        run : |
+          cd src && bash ./zookeeper.sh stop

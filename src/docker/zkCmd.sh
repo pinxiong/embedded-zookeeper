@@ -26,7 +26,15 @@ ZOOKEEPER_CLIENT_2182=$ZOOKEEPER_HOME_2182/bin/zkCli.sh
 case $1 in 
 start)
     echo "start zookeeper"
+    if [ ! -f "$ZOOKEEPER_SERVER_2181" ]; then
+        echo "waiting for installing zookeeper instances..."
+        sleep 5s
+    fi
     $ZOOKEEPER_SERVER_2181 start
+    if [ ! -f "$ZOOKEEPER_SERVER_2182" ]; then
+        echo "waiting for installing zookeeper instances..."
+        sleep 5s
+    fi
     $ZOOKEEPER_SERVER_2182 start
     ;;
 stop)
