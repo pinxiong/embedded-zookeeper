@@ -7,27 +7,26 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
-      - name: "Build zookeeper image"
-        run: |
-          cd src/docker && bash ./build-zk-image.sh && docker images
       - name: "Start zookeeper instances"
         run : |
-          cd src && bash ./zookeeper.sh start
+          cd src && bash ./zkCmd.sh start
       - name: "Stop zookeeper instances"
         run : |
-          cd src && bash ./zookeeper.sh stop
+          cd src && bash ./zkCmd.sh stop
           
           
   zookeeper-lifecycle-windows:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v1
-      - name: "Build zookeeper image"
-        run: |
-          cd src/docker && bash ./build-zk-image.sh && docker images
+      - uses: Vampire/setup-wsl@v1
+        with:
+            distribution: Ubuntu-18.04
       - name: "Start zookeeper instances"
         run : |
-          cd src && bash ./zookeeper.sh start
+          cd src && bash ./zkCmd.sh start
+        shell: bash
       - name: "Stop zookeeper instances"
         run : |
-          cd src && bash ./zookeeper.sh stop
+          cd src && bash ./zkCmd.sh stop
+        shell: bash

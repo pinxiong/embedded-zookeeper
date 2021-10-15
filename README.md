@@ -8,35 +8,30 @@ Use docker to build independent two zookeeper instances, which use ports `2181` 
 
 + build image
 
-```shell
-cd src/docker
-./build-zk-image.sh
-```
-
 + start zookeeper instances
 
 ```shell
 cd src
-./zookeeper.sh start
+./zkCmd.sh start
 ```
 
 + stop zookeeper instances
 
 ```shell
 cd src
-./zookeeper.sh stop
+./zkCmd.sh stop
 ```
 
 + reset zookeeper instances
 
 ```shell
 cd src
-./zookeeper.sh reset
+./zkCmd.sh reset
 ```
 
 + get info of zookeeper instances
 
 ```shell
 cd src
-./zookeeper.sh status
+./zkCmd.sh status
 ```
